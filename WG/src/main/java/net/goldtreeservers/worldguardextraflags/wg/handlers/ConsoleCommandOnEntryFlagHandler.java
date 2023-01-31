@@ -16,6 +16,7 @@ import com.sk89q.worldguard.session.MoveType;
 import com.sk89q.worldguard.session.Session;
 
 import net.goldtreeservers.worldguardextraflags.flags.Flags;
+import org.bukkit.entity.Player;
 
 public class ConsoleCommandOnEntryFlagHandler extends Handler
 {
@@ -55,7 +56,8 @@ public class ConsoleCommandOnEntryFlagHandler extends Handler
 				{
 					for(String command : commands_)
 					{
-						Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), command.substring(1).replace("%username%", player.getName())); //TODO: Make this better
+						Player bukkitPlayer = Bukkit.getPlayer(player.getUniqueId());
+						bukkitPlayer.performCommand(command.substring(1));
 					}
 
 					break;
